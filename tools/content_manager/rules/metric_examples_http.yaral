@@ -1,0 +1,21 @@
+rule metric_examples_http {
+
+  meta:
+    author = "Google Cloud Security"
+    description = "Assume we have logs from our API HTTP services ingested into the SIEM with fields like timestamp, client IP, user agent, method, domain, web path, query string, HTTP response status code. We want to detect if in the last one hour rolling window the volume of HTTP request volumes to any method + endpoint combo exceeds by three times the average volume of HTTP request calls to the same method + endpoint combo as an average over the hour period over last 7 days, AND the request volume is greater than 2000. How would we implement a rule like this in the platform?"
+
+  events:
+    $net.metadata.event_type = "NETWORK_HTTP"
+    //$net.network.received_bytes > 0
+    net.ip_in_range_cidr($net.principal.ip[0], "10.128.0.21/32") //inside my network
+    $net.principal.ip = $ip
+
+  match:
+    $ip over 1h
+
+  outcome:
+    //we can slice by all queries or success <400 or failure >=400, not individual response codes
+
+  condition:
+    #net > 2000 
+}

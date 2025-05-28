@@ -1,9 +1,80 @@
-data_table_5:
-  description: "My new data table"
+apt40_file_iocs:
   columns:
   - column_index: 0
-    original_column: userid
     column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: a
   - column_index: 1
-    original_column: hostname
     column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: b
+  create_time: '2025-05-26T04:54:21.600579Z'
+  description: null
+  resource_name: projects/malachite-ace-373104/locations/australia-southeast1/instances/bc592657-8692-4184-a40d-6c12ff58a350/dataTables/apt40_file_iocs
+  row_time_to_live: null
+  rule_associations_count: null
+  rules: null
+  update_time: '2025-05-26T04:54:21.600579Z'
+  uuid: 5e3f30b27a164a5eaf5ae1ee9d25579d
+data_table_5:
+  columns:
+  - column_index: 0
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: userid
+  - column_index: 1
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: hostname
+  create_time: '2025-05-28T10:41:51.309636Z'
+  description: My new data table
+  resource_name: projects/malachite-ace-373104/locations/australia-southeast1/instances/bc592657-8692-4184-a40d-6c12ff58a350/dataTables/data_table_5
+  row_time_to_live: null
+  rule_associations_count: null
+  rules: null
+  update_time: '2025-05-28T10:46:51.835370Z'
+  uuid: 22c681f2163047ad9348938aebbd9a97
+newtest:
+  columns:
+  - column_index: 0
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: ddd
+  - column_index: 1
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: dddw
+  create_time: '2025-05-26T02:30:19.810296Z'
+  description: null
+  resource_name: projects/malachite-ace-373104/locations/australia-southeast1/instances/bc592657-8692-4184-a40d-6c12ff58a350/dataTables/newtest
+  row_time_to_live: null
+  rule_associations_count: null
+  rules: null
+  update_time: '2025-05-26T02:30:19.810296Z'
+  uuid: afe14ae090ed4fa78905d3358e5ee5db
+test:
+  columns:
+  - column_index: 0
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: sssss
+  - column_index: 1
+    column_type: STRING
+    key_column: null
+    mapped_column_path: null
+    original_column: sssss2
+  create_time: '2025-05-26T02:24:43.314038Z'
+  description: null
+  resource_name: projects/malachite-ace-373104/locations/australia-southeast1/instances/bc592657-8692-4184-a40d-6c12ff58a350/dataTables/test
+  row_time_to_live: null
+  rule_associations_count: null
+  rules: null
+  update_time: '2025-05-26T02:30:46.134053Z'
+  uuid: e141e9e1f6f04abaa4bb69c1770e0281

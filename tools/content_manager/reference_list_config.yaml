@@ -1,7 +1,14 @@
+apt40_iocs:
+  description: IoCs related to APT40
+  resource_name: projects/malachite-ace-373104/locations/australia-southeast1/instances/bc592657-8692-4184-a40d-6c12ff58a350/referenceLists/apt40_iocs
+  revision_create_time: '2025-05-16T00:01:29.593455Z'
+  rule_associations_count: null
+  rules: null
+  syntax_type: REFERENCE_LIST_SYNTAX_TYPE_PLAIN_TEXT_STRING
 example_list_1:
   description: Description for example reference list 1
-  resource_name: projects/1234567891234/locations/us/instances/3f0ac524-5ae1-4bfd-b86d-53afc953e7e6/referenceLists/example_list_1
-  revision_create_time: '2024-02-26T18:28:49.613087Z'
+  resource_name: projects/malachite-ace-373104/locations/australia-southeast1/instances/bc592657-8692-4184-a40d-6c12ff58a350/referenceLists/example_list_1
+  revision_create_time: '2025-05-15T12:15:47.562671Z'
   rule_associations_count: null
   rules: null
   syntax_type: REFERENCE_LIST_SYNTAX_TYPE_PLAIN_TEXT_STRING

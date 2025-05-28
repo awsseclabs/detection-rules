@@ -1,0 +1,29 @@
+rule win_tempAccountAbuse {
+  meta:
+    author = "Chronicle Security"
+    description = "Detects the creation, usage, and deletion of a user account."
+    severity = "Low"
+
+  events:
+    $create.metadata.event_type = "USER_CREATION"
+    $create.target.user.userid = $targetUser
+
+    $create.metadata.event_timestamp.seconds <= 
+       $login.metadata.event_timestamp.seconds
+
+    $login.metadata.event_type = "USER_LOGIN"
+    $login.target.user.userid = $targetUser
+
+    $login.metadata.event_timestamp.seconds <= 
+       $delete.metadata.event_timestamp.seconds
+
+    $delete.metadata.event_type = "USER_DELETION"
+    $delete.target.user.userid = $targetUser
+
+  match:
+    $targetUser over 4h
+
+  condition:
+    $create and $login and $delete 
+
+}

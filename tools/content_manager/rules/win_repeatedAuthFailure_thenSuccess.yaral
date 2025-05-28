@@ -1,0 +1,30 @@
+rule win_repeatedAuthFailure_thenSuccess {
+  meta:
+    author = "Chronicle Security "
+    description = "Detect repeated authentication failure, followed by authentication success."
+    severity = "Low"
+
+  events:
+    $fail.metadata.event_type      = "USER_LOGIN"
+    $fail.metadata.vendor_name     = "Microsoft"
+   
+   $fail.intermediary.hostname    = $targetHost
+
+    $fail.target.user.userid       = $targetUser
+    $fail.security_result.category = "AUTH_VIOLATION"
+    $fail.security_result.action   = "BLOCK"
+
+    $fail.metadata.event_timestamp.seconds <= 
+       $success.metadata.event_timestamp.seconds
+
+    $success.metadata.event_type = "USER_LOGIN"
+    $success.target.user.userid = $targetUser
+         $success.security_result.action = "ALLOW"
+
+
+  match:
+    $targetUser, $targetHost over 15m
+
+  condition:
+    #fail > 3 and $success
+}

@@ -1,0 +1,27 @@
+rule demo_repeatedAuthFailure_thenSuccess {
+meta:
+author = "Google Chronicle"
+description = "Rule to identify a successful login after 4 failed login attempts"
+severity = "Medium"
+mitre_attack_tactic = "Credential Access"
+mitre_attack_technique = "Brute Force: Password Guessing"
+mitre_attack_url = "https://attack.mitre.org/techniques/T1110/001/"
+mitre_attack_version = "T1110"
+type = "Hunt"
+data_source = "Okta, Duo, Workspace"
+priority = "Medium"
+events:
+$fail.metadata.event_type = "USER_LOGIN"
+$fail.target.user.userid = $targetUser
+$fail.security_result.category_details = "INVALID_CREDENTIALS"
+$fail.security_result.action = "BLOCK"
+$fail.metadata.event_timestamp.seconds <= $success.metadata.event_timestamp.seconds
+$success.metadata.event_type = "USER_LOGIN"
+$success.target.user.userid = $targetUser
+$success.security_result.action = "ALLOW"
+match:
+$targetUser over 15m
+
+condition:
+#fail > 2 and $success
+}

@@ -1,0 +1,41 @@
+rule github_user_role_updated{
+  meta:
+    author = "Maria Gorin"
+    description = "Detects when a GitHub user role is upgraded to an admin or downgraded to a member"
+    severity = "High"
+
+    mitre_attack_tactic = "Persistence, Privilege Escalation"
+    mitre_attack_technique = "Account Manipulation"
+    mitre_attack_url = "https://attack.mitre.org/techniques/T1098/"
+    mitre_attack_version = "v2.6"
+
+  events:
+    // log type is not suitable here as there are 2 different github feeds that share github logs storage bucket
+    //  and sometimes the log type changes between GITHUB and GITHUB_EVENTS, so anchor off vendor name field instead
+    $e.metadata.vendor_name = "GITHUB" and
+    $e.extracted.fields["action"] = "org.update_member"
+
+  outcome:
+    $risk_score = max(35) // TODO
+    $mitre_attack_tactic = "Account Manipulation"
+    $mitre_attack_technique = "Persistence, Privilege Escalation"
+    $mitre_attack_technique_id = "T1098"
+
+    $playbook_category = "admin_privesc"
+
+    $event_type = $e.metadata.event_type
+    $product_event_type = $e.metadata.product_event_type
+    $actor_user_login = $e.principal.user.userid
+    $actor_external_nameid = $e.extracted.fields["external_identity_username"]
+    $actor_ip = array($e.principal.ip)
+    $actor_location = $e.principal.location.city
+    $actor_location_country = $e.principal.location.country_or_region
+    //$target_user_login = $e.target.user.userid
+    // org membership events only include github usernames in the log events, so use extracted user field
+    $target_user_login = $e.extracted.fields["user"]
+    $new_github_org_permission = $e.extracted.fields["permission"]
+    $old_github_org_permission = $e.extracted.fields["old_permission"]
+
+  condition:
+    $e
+}

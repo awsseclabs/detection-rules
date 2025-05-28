@@ -1,0 +1,24 @@
+// Looked at as part of SOAR case 35638
+rule win_repeatedAuthFailure_multipleAccount {
+  meta:
+    author = "Chronicle Security"
+    description = "Detects repeated password failures on the same host, but for different user accounts."
+    severity = "Medium"
+
+  events:
+    $event.metadata.event_type      = "USER_LOGIN"
+    $event.metadata.vendor_name     = "Microsoft"
+    $event.intermediary.hostname    = $targetHost
+    $event.target.user.userid       = $targetUser
+    $event.security_result.category = "AUTH_VIOLATION"
+    $event.security_result.action   = "BLOCK"
+
+    //exclusions, e.g., RDP, Citrix, Concentration Servers
+    //$event.target.hostname          != /add_your_excluded_hosts_here/    
+
+  match:
+    $targetHost over 1h
+
+  condition:
+    $event and #targetUser > 1
+}
