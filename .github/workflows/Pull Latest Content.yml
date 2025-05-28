@@ -15,10 +15,6 @@ permissions:
   # 'id-token: write' is required to allow GitHub's OIDC provider to create a JSON Web Token for every run
   id-token: write
 
-defaults:  # <---- Add this section
-  run:
-    working-directory: ./tools/content_manager # Path relative to the repository root
-
 jobs:
   pull-latest-content:
     runs-on: ubuntu-latest
