@@ -1,9 +1,9 @@
-cisco_umbrella_top_1k_domains:
-  description: Cisco Umbrella top 1,000 domains
+data_table_5:
+  description: "My new data table"
   columns:
   - column_index: 0
-    original_column: rank
+    original_column: userid
     column_type: STRING
   - column_index: 1
-    original_column: domain
+    original_column: hostname
     column_type: STRING
