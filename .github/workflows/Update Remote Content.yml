@@ -77,8 +77,14 @@ jobs:
       - name: Add files to git staging area
         run: git add rules rule_config.yaml data_tables data_table_config.yaml reference_lists reference_list_config.yaml
 
+
       - name: Run git status command
         run: git status  # For debugging
+
+      - name: Stage and Commit Changes
+        run: |
+          git add . # Stages all files, including untracked ones
+          git commit -m "Automated update: including all changes"
 
       - name: Commit pending changes
         run: |
