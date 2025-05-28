@@ -22,6 +22,8 @@ defaults:  # <---- Add this section
 jobs:
   update-remote-content:
     runs-on: ubuntu-latest
+    environment: .env
+
 
     env:
       LOGGING_LEVEL: ${{ vars.LOGGING_LEVEL }}
